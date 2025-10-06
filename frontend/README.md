@@ -1,4 +1,4 @@
-# Meter Reading Web Application
+# AskNanimaz
 
 A modern web platform for residents and complex managers to securely upload, view, and manage water & electricity meter readings with proof-based image storage.
 
