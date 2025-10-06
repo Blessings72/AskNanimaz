@@ -45,10 +45,19 @@ const Navbar: React.FC = () => {
               My Readings
             </Button>
             
+            <Button color="inherit" onClick={() => navigate('/my-invoices')}>
+              My Invoices
+            </Button>
+            
             {(user?.role === 'manager' || user?.role === 'admin') && (
-              <Button color="inherit" onClick={() => navigate('/all-readings')}>
-                All Readings
-              </Button>
+              <>
+                <Button color="inherit" onClick={() => navigate('/all-readings')}>
+                  All Readings
+                </Button>
+                <Button color="inherit" onClick={() => navigate('/all-invoices')}>
+                  All Invoices
+                </Button>
+              </>
             )}
             
             <Button color="inherit" onClick={handleLogout}>

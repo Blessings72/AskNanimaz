@@ -59,3 +59,37 @@ export interface MeterReadingList {
   readings: MeterReadingResponse[];
   total: number;
 }
+
+// Invoice Types
+export interface InvoiceBase {
+  amount: number;
+  consumption: number;
+  rate: number;
+  due_date: string;
+}
+
+export interface InvoiceResponse extends InvoiceBase {
+  id: number;
+  user_id: number;
+  meter_reading_id: number;
+  invoice_number: string;
+  issue_date: string;
+  paid: boolean;
+  paid_at?: string;
+  user: User;
+  meter_reading: MeterReadingResponse;
+}
+
+export interface InvoiceList {
+  invoices: InvoiceResponse[];
+  total: number;
+}
+
+export interface InvoiceSummary {
+  total_invoices: number;
+  total_amount: number;
+  paid_invoices: number;
+  paid_amount: number;
+  pending_invoices: number;
+  pending_amount: number;
+}

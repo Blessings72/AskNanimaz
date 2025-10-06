@@ -10,6 +10,8 @@ import Dashboard from './pages/Dashboard';
 import UploadReadingPage from './pages/UploadReadingPage';
 import MyReadingsPage from './pages/MyReadingsPage';
 import AllReadingsPage from './pages/AllReadingsPage';
+import MyInvoicesPage from './pages/MyInvoicesPage';
+import AllInvoicesPage from './pages/AllInvoicesPage';
 import NotFound from './pages/NotFound';
 
 // Create theme
@@ -96,6 +98,22 @@ const AppContent: React.FC = () => {
           element={
             <ProtectedRoute>
               <AllReadingsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/my-invoices"
+          element={
+            <ProtectedRoute>
+              <MyInvoicesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/all-invoices"
+          element={
+            <ProtectedRoute>
+              <AllInvoicesPage />
             </ProtectedRoute>
           }
         />
