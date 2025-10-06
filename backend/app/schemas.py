@@ -73,12 +73,16 @@ class MeterReadingList(BaseModel):
     readings: List[MeterReadingResponse]
     total: int
 
-# Invoice Schemas (for later use)
+# Invoice Schemas
 class InvoiceBase(BaseModel):
     amount: float
     consumption: float
     rate: float
     due_date: datetime
+
+class InvoiceCreate(BaseModel):
+    user_id: int
+    meter_reading_id: int
 
 class InvoiceResponse(InvoiceBase):
     id: int
@@ -88,6 +92,23 @@ class InvoiceResponse(InvoiceBase):
     issue_date: datetime
     paid: bool
     paid_at: Optional[datetime] = None
+    user: UserResponse
+    meter_reading: MeterReadingResponse
 
     class Config:
         from_attributes = True
+
+class InvoiceUpdate(BaseModel):
+    paid: Optional[bool] = None
+
+class InvoiceList(BaseModel):
+    invoices: List[InvoiceResponse]
+    total: int
+
+class InvoiceSummary(BaseModel):
+    total_invoices: int
+    total_amount: float
+    paid_invoices: int
+    paid_amount: float
+    pending_invoices: int
+    pending_amount: float
