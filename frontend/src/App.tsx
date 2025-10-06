@@ -7,6 +7,9 @@ import Layout from './components/Layout/Layout';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
+import UploadReadingPage from './pages/UploadReadingPage';
+import MyReadingsPage from './pages/MyReadingsPage';
+import AllReadingsPage from './pages/AllReadingsPage';
 import NotFound from './pages/NotFound';
 
 // Create theme
@@ -69,6 +72,30 @@ const AppContent: React.FC = () => {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/upload-reading"
+          element={
+            <ProtectedRoute>
+              <UploadReadingPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/my-readings"
+          element={
+            <ProtectedRoute>
+              <MyReadingsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/all-readings"
+          element={
+            <ProtectedRoute>
+              <AllReadingsPage />
             </ProtectedRoute>
           }
         />

@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, cursor: 'pointer' }} onClick={() => navigate('/dashboard')}>
           Meter Reading App
         </Typography>
         
@@ -30,9 +30,27 @@ const Navbar: React.FC = () => {
             <Typography variant="body2">
               Welcome, {user?.full_name} ({user?.role})
             </Typography>
+            
             <Button color="inherit" onClick={() => navigate('/dashboard')}>
               Dashboard
             </Button>
+            
+            {(user?.role === 'resident' || user?.role === 'admin') && (
+              <Button color="inherit" onClick={() => navigate('/upload-reading')}>
+                Upload Reading
+              </Button>
+            )}
+            
+            <Button color="inherit" onClick={() => navigate('/my-readings')}>
+              My Readings
+            </Button>
+            
+            {(user?.role === 'manager' || user?.role === 'admin') && (
+              <Button color="inherit" onClick={() => navigate('/all-readings')}>
+                All Readings
+              </Button>
+            )}
+            
             <Button color="inherit" onClick={handleLogout}>
               Logout
             </Button>

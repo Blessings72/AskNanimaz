@@ -30,3 +30,32 @@ export interface AuthResponse {
 export interface ApiError {
   detail: string;
 }
+
+// Meter Reading Types
+export type MeterType = 'water' | 'electricity';
+
+export interface MeterReadingBase {
+  meter_type: MeterType;
+  reading_value: number;
+  image_url: string;
+}
+
+export interface MeterReadingCreate {
+  meter_type: MeterType;
+  reading_value: number;
+}
+
+export interface MeterReadingResponse extends MeterReadingBase {
+  id: number;
+  user_id: number;
+  user: User;
+  reading_date: string;
+  verified: boolean;
+  verified_by?: number;
+  verified_at?: string;
+}
+
+export interface MeterReadingList {
+  readings: MeterReadingResponse[];
+  total: number;
+}

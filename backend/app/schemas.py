@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr
-from typing import Optional
+from typing import Optional, List
 from datetime import datetime
 from enum import Enum
 
@@ -50,16 +50,44 @@ class MeterReadingBase(BaseModel):
     reading_value: float
     image_url: str
 
-class MeterReadingCreate(MeterReadingBase):
-    pass
+class MeterReadingCreate(BaseModel):
+    meter_type: MeterType
+    reading_value: float
 
 class MeterReadingResponse(MeterReadingBase):
     id: int
     user_id: int
+    user: UserResponse
     reading_date: datetime
     verified: bool
     verified_by: Optional[int] = None
     verified_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True
+
+class MeterReadingUpdate(BaseModel):
+    verified: Optional[bool] = None
+
+class MeterReadingList(BaseModel):
+    readings: List[MeterReadingResponse]
+    total: int
+
+# Invoice Schemas (for later use)
+class InvoiceBase(BaseModel):
+    amount: float
+    consumption: float
+    rate: float
+    due_date: datetime
+
+class InvoiceResponse(InvoiceBase):
+    id: int
+    user_id: int
+    meter_reading_id: int
+    invoice_number: str
+    issue_date: datetime
+    paid: bool
+    paid_at: Optional[datetime] = None
 
     class Config:
         from_attributes = True
